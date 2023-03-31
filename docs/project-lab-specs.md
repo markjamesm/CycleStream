@@ -13,7 +13,10 @@ Gas sensor with Artificial Intelligence (AI) and Integrated high-linearity and h
 
 ### Bosch BMI270
 
-Inertial Measurement Unit (IMU). The 6-axis sensor combines a 16-bit tri-axial gyroscope and a 16-bit tri-axial accelerometer featuring Bosch’s automotive-proven gyroscope technology.
+Inertial Measurement Unit (IMU) with 6-axis sensor:
+
+* 16-bit tri-axial gyroscope with Bosch’s automotive-proven gyroscope technology.
+* 16-bit tri-axial accelerometer.
 
 ### Rohm BH1760
 
