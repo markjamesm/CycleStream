@@ -9,6 +9,6 @@ CycleStream is an IoT solution designed to collect and analyze data gathered fro
 * GPS Tracking (Unit TBD).
 * Web interface to visualize data using [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor). 
 
-CycleStream is built on the Meadow Platform from [Wilderness Labs](https://www.wildernesslabs.co/) and uses a Meadow F7V2 microcontroller to interface with the various sensors and transmit data to the Cyclestream server. Meadow is a complete, IoT platform with defense-grade security that runs full .NET Standard applications on embeddable microcontrollers.
+CycleStream is built on the Meadow Platform from [Wilderness Labs](https://www.wildernesslabs.co/) and uses a Meadow F7V2 microcontroller connected to to a [Project Lab](https://store.wildernesslabs.co/collections/frontpage/products/project-lab-board) to interface with the various sensors and transmit data to the Cyclestream server. Meadow is a complete, IoT platform with defense-grade security that runs full .NET Standard applications on embeddable microcontrollers.
 
 The project is currently in an early alpha stage and under active development.
