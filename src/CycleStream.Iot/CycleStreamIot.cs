@@ -3,7 +3,6 @@ using Meadow.Devices;
 using CycleStream.IoT.Sensors;
 using System;
 using System.Threading.Tasks;
-using CycleStream.IoT;
 
 namespace CycleStream.Iot
 {
