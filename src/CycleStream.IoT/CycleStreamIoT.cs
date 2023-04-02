@@ -1,5 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
+using CycleStream.IoT.Sensors;
 using System;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace CycleStream.Iot
             var i2c = Device.CreateI2cBus();
 
             var environmentalSensor = new EnvironmentalSensor(i2c);
-            environmentalSensor.PollSensor();
+            environmentalSensor.Poll();
 
             return base.Initialize();
         }

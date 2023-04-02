@@ -5,9 +5,9 @@ using Meadow.Units;
 using System;
 using System.Threading.Tasks;
 
-namespace CycleStream.Iot
+namespace CycleStream.IoT.Sensors
 {
-    public class EnvironmentalSensor
+    public class EnvironmentalSensor : ISensor
     {
         private Bme688 _bme688;
         private readonly II2cBus _i2cBus;
@@ -21,7 +21,7 @@ namespace CycleStream.Iot
             EnableGasHeater();
         }
 
-        public void GatherData()
+        public void Poll()
         {
             var consumer = Bme688.CreateObserver(
             handler: result =>
@@ -36,7 +36,7 @@ namespace CycleStream.Iot
                 result.New.Temperature is { } newTemp &&
                 result.New.Humidity is { } newHumidity)
                 {
-                    return ((newTemp - oldTemp).Abs().Celsius > 0.5 && (newHumidity - oldHumidity).Percent > 0.05);
+                    return (newTemp - oldTemp).Abs().Celsius > 0.5 && (newHumidity - oldHumidity).Percent > 0.05;
                 }
 
                 return false;
@@ -54,7 +54,7 @@ namespace CycleStream.Iot
                     Resolver.Log.Info($"  Pressure: {result.New.Pressure?.Millibar:N2}mbar ({result.New.Pressure?.Pascal:N2}Pa)");
                     if (_bme688.GasConversionIsEnabled)
                     {
-                        Resolver.Log.Info($"  Gas Resistance: {result.New.GasResistance:N0}Ohms");
+                        Resolver.Log.Info($"  Gas Resistance: {result.New.GasResistance:N0} Ohms");
                     }
                 };
             }
@@ -68,7 +68,7 @@ namespace CycleStream.Iot
         {
             Resolver.Log.Info("Create BME688 sensor with I2C...");
 
-            _bme688 = new Bme688(_i2cBus, (byte)Bme688.Addresses.Address_0x76);
+            _bme688 = new Bme688(_i2cBus, (byte)Bme68x.Addresses.Address_0x76);
         }
 
         private void EnableGasHeater()
@@ -77,8 +77,8 @@ namespace CycleStream.Iot
             {
                 _bme688.GasConversionIsEnabled = true;
                 _bme688.HeaterIsEnabled = true;
-                _bme688.ConfigureHeatingProfile(Bme688.HeaterProfileType.Profile1, new Temperature(300), TimeSpan.FromMilliseconds(100), new Temperature(22));
-                _bme688.HeaterProfile = Bme688.HeaterProfileType.Profile1;
+                _bme688.ConfigureHeatingProfile(Bme68x.HeaterProfileType.Profile1, new Temperature(300), TimeSpan.FromMilliseconds(100), new Temperature(22));
+                _bme688.HeaterProfile = Bme68x.HeaterProfileType.Profile1;
             }
         }
 
