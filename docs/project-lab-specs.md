@@ -18,7 +18,7 @@ Inertial Measurement Unit (IMU) with 6-axis sensor:
 * 16-bit tri-axial gyroscope with Bosch’s automotive-proven gyroscope technology.
 * 16-bit tri-axial accelerometer.
 
-### Rohm BH1760
+### Rohm BH1750
 
 Digital Ambient Light sensor, can accurately measure from 1 to 65535 lux.
 
