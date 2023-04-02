@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CycleStream.IoT.Sensors
+﻿namespace CycleStream.IoT.Sensors
 {
     public interface ISensor
     {

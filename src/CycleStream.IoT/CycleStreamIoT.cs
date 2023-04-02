@@ -3,10 +3,11 @@ using Meadow.Devices;
 using CycleStream.IoT.Sensors;
 using System;
 using System.Threading.Tasks;
+using CycleStream.IoT;
 
 namespace CycleStream.Iot
 {
-    public class CycleStreamIoT : App<F7FeatherV2>
+    public class CycleStreamIot : App<F7FeatherV2>
     {
         public override Task Run()
         {
@@ -20,6 +21,10 @@ namespace CycleStream.Iot
             Console.WriteLine("Initialize...");
 
             var i2c = Device.CreateI2cBus();
+
+            var cycleStreamIot = Device;
+
+            var displayController = new DisplayController(cycleStreamIot);
 
             var environmentalSensor = new EnvironmentalSensor(i2c);
             environmentalSensor.Poll();
