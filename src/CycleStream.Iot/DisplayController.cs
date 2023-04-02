@@ -1,28 +1,17 @@
-﻿using CycleStream.Iot;
-using Meadow;
-using Meadow.Devices;
+﻿using Meadow;
 using Meadow.Foundation;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
-using Meadow.Gateways.Bluetooth;
 using Meadow.Hardware;
-using Meadow.Peripherals.Displays;
-using Meadow.Units;
-using System;
-using System.Threading;
 
-namespace CycleStream.IoT
+namespace CycleStream.Iot
 {
     public class DisplayController
     {
-        St7789 st7789;
         MicroGraphics canvas;
-        F7FeatherV2 _cycleStreamIot;
 
-        public DisplayController(F7FeatherV2 cycleStreamIot)
+        public DisplayController()
         {
-            _cycleStreamIot = cycleStreamIot;
-
             // this display needs mode3
             var config = new SpiClockConfiguration(new Meadow.Units.Frequency(12000, Meadow.Units.Frequency.UnitType.Kilohertz),
                 SpiClockConfiguration.Mode.Mode3);
@@ -30,13 +19,11 @@ namespace CycleStream.IoT
             // new up the display on the SPI bus
             var display = new St7789
             (
-                device: _cycleStreamIot.Device,
-                spiBus: _cycleStreamIot.Device.CreateSpiBus(_cycleStreamIot.Device.Pins.SCK, _cycleStreamIot.Device.Pins.MOSI, _cycleStreamIot.Device.Pins.MISO, config),
+                spiBus: Resolver.Device.CreateSpiBus(Resolver.Device.GetPin("SCK"), Resolver.Device.GetPin("MOSI"), Resolver.Device.GetPin("MISO"), config),
                 chipSelectPin: null,
-                dcPin: _cycleStreamIot.Device.Pins.D01,
-                resetPin: _cycleStreamIot.Device.Pins.D00,
-                width: 240, height: 240,
-                displayColorMode: St7789._cycleStreamIot.Format16bppRgb565
+                dcPin: Resolver.Device.GetPin("D01"),
+                resetPin: Resolver.Device.GetPin("D00"),
+                width: 240, height: 240
             );
 
             // create our graphics canvas that we'll draw onto 
@@ -44,6 +31,12 @@ namespace CycleStream.IoT
 
             // finally, clear any artifacts from the screen from boot up
             canvas.Clear(true);
+        }
+
+        public void Display()
+        {
+            canvas.CurrentFont = new Font12x20();
+            canvas.DrawText(x: 5, y: 5, "hello, Meadow!", Color.Black);
         }
     }
 }

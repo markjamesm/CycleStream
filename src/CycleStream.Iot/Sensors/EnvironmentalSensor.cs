@@ -4,7 +4,7 @@ using Meadow.Units;
 using System;
 using System.Threading.Tasks;
 
-namespace CycleStream.IoT.Sensors
+namespace CycleStream.Iot.Sensors
 {
     public class EnvironmentalSensor : ISensor
     {

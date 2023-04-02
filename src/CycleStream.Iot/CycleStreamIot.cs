@@ -1,6 +1,6 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using CycleStream.IoT.Sensors;
+using CycleStream.Iot.Sensors;
 using System;
 using System.Threading.Tasks;
 
@@ -19,11 +19,11 @@ namespace CycleStream.Iot
         {
             Console.WriteLine("Initialize...");
 
-         //   var displayController = new DisplayController();
-         //   displayController.InitializeDisplay();
-
             var environmentalSensor = new EnvironmentalSensor();
             environmentalSensor.Poll();
+
+            //var displayController = new DisplayController();
+            //displayController.Display();
 
             return base.Initialize();
         }

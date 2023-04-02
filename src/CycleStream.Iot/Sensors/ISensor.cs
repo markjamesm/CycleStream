@@ -1,4 +1,4 @@
-﻿namespace CycleStream.IoT.Sensors
+﻿namespace CycleStream.Iot.Sensors
 {
     public interface ISensor
     {
