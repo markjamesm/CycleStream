@@ -1,6 +1,5 @@
 ﻿using Meadow;
 using Meadow.Foundation.Sensors.Atmospheric;
-using Meadow.Hardware;
 using Meadow.Units;
 using System;
 using System.Threading.Tasks;
@@ -10,12 +9,9 @@ namespace CycleStream.IoT.Sensors
     public class EnvironmentalSensor : ISensor
     {
         private Bme688 _bme688;
-        private readonly II2cBus _i2cBus;
 
-        public EnvironmentalSensor(II2cBus i2CBus)
+        public EnvironmentalSensor()
         {
-            _i2cBus = i2CBus;
-
             CreateI2CSensor();
 
             EnableGasHeater();
@@ -68,7 +64,7 @@ namespace CycleStream.IoT.Sensors
         {
             Resolver.Log.Info("Create BME688 sensor with I2C...");
 
-            _bme688 = new Bme688(_i2cBus, (byte)Bme68x.Addresses.Address_0x76);
+            _bme688 = new Bme688(Resolver.Device.CreateI2cBus(), (byte)Bme68x.Addresses.Address_0x76);
         }
 
         private void EnableGasHeater()

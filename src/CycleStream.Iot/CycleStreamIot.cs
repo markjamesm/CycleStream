@@ -20,13 +20,10 @@ namespace CycleStream.Iot
         {
             Console.WriteLine("Initialize...");
 
-            var i2c = Device.CreateI2cBus();
+         //   var displayController = new DisplayController();
+         //   displayController.InitializeDisplay();
 
-            var cycleStreamIot = Device;
-
-            var displayController = new DisplayController(cycleStreamIot);
-
-            var environmentalSensor = new EnvironmentalSensor(i2c);
+            var environmentalSensor = new EnvironmentalSensor();
             environmentalSensor.Poll();
 
             return base.Initialize();
