@@ -38,9 +38,6 @@ namespace CycleStream.Iot
                 Resolver.Log.Trace("DisplayController up");
             }
 
-            //var displayController = new DisplayController();
-            //displayController.Display();
-
             return base.Initialize();
         }
     }
