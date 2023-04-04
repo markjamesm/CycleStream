@@ -2,6 +2,7 @@
 using Meadow.Devices;
 using System.Threading.Tasks;
 using CycleStream.Iot.Sensors;
+using CycleStream.Iot.Mqtt;
 
 namespace CycleStream.Iot
 {
@@ -37,7 +38,7 @@ namespace CycleStream.Iot
             return base.Initialize();
         }
 
-        public override Task Run()
+        public override async Task Run()
         {
             Resolver.Log.Info("Run...");
 
@@ -48,7 +49,7 @@ namespace CycleStream.Iot
 
             _environmentalSensor.Poll();
 
-            return base.Run();
+            await MqttClient.ConnectClient();
         }
     }
 }

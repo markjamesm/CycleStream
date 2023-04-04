@@ -11,6 +11,7 @@
     <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.96.0" />
     <PackageReference Include="Meadow.Foundation.Sensors.Atmospheric.Bme68x" Version="0.96.0" />
     <PackageReference Include="Meadow.ProjectLab" Version="0.96.0" />
+    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.1.4.563" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">
