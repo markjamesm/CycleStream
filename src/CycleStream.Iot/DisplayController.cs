@@ -1,51 +1,92 @@
 ﻿using Meadow.Foundation;
 using Meadow.Foundation.Graphics;
+using Meadow.Units;
 
 namespace CycleStream.Iot
 {
     public class DisplayController
     {
-        private readonly MicroGraphics _graphics;
+        readonly MicroGraphics graphics;
 
-        private bool _isUpdating = false;
-        private bool _needsUpdate = false;
+        bool isUpdating = false;
+        bool needsUpdate = false;
+
+        public (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? AtmosphericConditions
+        {
+            get => atmosphericConditions;
+            set
+            {
+                atmosphericConditions = value;
+                Update();
+            }
+        }
+        (Temperature? Temperature, RelativeHumidity? Humidity, Pressure? Pressure, Resistance? GasResistance)? atmosphericConditions;
 
         public DisplayController(IGraphicsDisplay display)
         {
-            _graphics = new MicroGraphics(display)
+            graphics = new MicroGraphics(display)
             {
                 CurrentFont = new Font12x16()
             };
 
-            _graphics.Clear(true);
+            graphics.Clear(true);
         }
 
         public void Update()
         {
-            if (_isUpdating)
+            if (isUpdating)
             {   //queue up the next update
-                _needsUpdate = true;
+                needsUpdate = true;
                 return;
             }
 
-            _isUpdating = true;
+            isUpdating = true;
 
-            _graphics.Clear();
+            graphics.Clear();
             Draw();
-            _graphics.Show();
+            graphics.Show();
 
-            _isUpdating = false;
+            isUpdating = false;
 
-            if (_needsUpdate)
+            if (needsUpdate)
             {
-                _needsUpdate = false;
+                needsUpdate = false;
                 Update();
             }
         }
 
-        private void Draw()
+        void DrawStatus(string label, string value, Color color, int yPosition)
         {
-            _graphics.DrawText(x: 2, y: 0, "Hello PROJ LAB!", WildernessLabsColors.AzureBlue);
+            graphics.DrawText(x: 20, y: yPosition, label, color: color);
+            graphics.DrawText(x: 238, y: yPosition, value, alignmentH: HorizontalAlignment.Right, color: color);
+        }
+
+        void Draw()
+        {
+            graphics.DrawText(x: 25, y: 0, "CycleStream", WildernessLabsColors.AzureBlue);
+
+            if (AtmosphericConditions is { } conditions)
+            {
+                if (conditions.Temperature is { } temp)
+                {
+                    DrawStatus("Temperature:", $"{temp.Celsius:N1}C", WildernessLabsColors.GalleryWhite, 35);
+                }
+
+                if (conditions.Pressure is { } pressure)
+                {
+                    DrawStatus("Pressure:", $"{pressure.StandardAtmosphere:N1}atm", WildernessLabsColors.GalleryWhite, 55);
+                }
+
+                if (conditions.Humidity is { } humidity)
+                {
+                    DrawStatus("Humidity:", $"{humidity.Percent:N1}%", WildernessLabsColors.GalleryWhite, 75);
+                }
+
+                if (conditions.GasResistance is { } gasResistance)
+                {
+                    DrawStatus("Gas Res:", $"{gasResistance.Ohms:N0}", WildernessLabsColors.GalleryWhite, 95);
+                }
+            }
         }
     }
 }
