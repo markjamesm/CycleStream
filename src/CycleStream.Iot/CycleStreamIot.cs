@@ -1,44 +1,54 @@
 ﻿using Meadow;
 using Meadow.Devices;
-using CycleStream.Iot.Sensors;
-using System;
 using System.Threading.Tasks;
+using CycleStream.Iot.Sensors;
 
 namespace CycleStream.Iot
 {
     public class CycleStreamIot : App<F7FeatherV2>
     {
-        DisplayController _displayController;
-
-        public override Task Run()
-        {
-            Console.WriteLine("Run...");
-
-            if (_displayController != null)
-            {
-                _displayController.Update();
-            }
-
-            return base.Run();
-        }
+        private DisplayController _displayController;
+        private IProjectLabHardware _projLab;
+        private EnvironmentalSensor _environmentalSensor;
 
         public override Task Initialize()
         {
-            Console.WriteLine("Initialize...");
+            Resolver.Log.Loglevel = Meadow.Logging.LogLevel.Trace;
 
-            var environmentalSensor = new EnvironmentalSensor();
-            environmentalSensor.Poll();
+            Resolver.Log.Info("Initializing hardware...");
 
-            var projLab = ProjectLab.Create();
+            //==== instantiate the project lab hardware
+            _projLab = ProjectLab.Create();
 
-            if (projLab.Display is { } display)
+            Resolver.Log.Info($"Running on ProjectLab Hardware {_projLab.RevisionString}");
+
+            //---- display controller (handles display updates)
+            if (_projLab.Display is { } display)
             {
                 Resolver.Log.Trace("Creating DisplayController");
                 _displayController = new DisplayController(display);
                 Resolver.Log.Trace("DisplayController up");
             }
 
+            _environmentalSensor = new EnvironmentalSensor(_displayController);
+
+            Resolver.Log.Info("Initialization complete");
+
             return base.Initialize();
+        }
+
+        public override Task Run()
+        {
+            Resolver.Log.Info("Run...");
+
+            if (_displayController != null)
+            {
+                _displayController.Update();
+            }
+
+            _environmentalSensor.Poll();
+
+            return base.Run();
         }
     }
 }

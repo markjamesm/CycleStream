@@ -2,24 +2,24 @@
 using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Units;
 using System;
-using System.Threading.Tasks;
 
 namespace CycleStream.Iot.Sensors
 {
     public class EnvironmentalSensor : ISensor
     {
         private Bme688 _bme688;
+        private readonly DisplayController _displayController;
 
-        public EnvironmentalSensor()
+        public EnvironmentalSensor(DisplayController displayController)
         {
+            _displayController = displayController;
             CreateI2CSensor();
-
-            EnableGasHeater();
+            // EnableGasHeater();
         }
 
         public void Poll()
         {
-            var consumer = Bme688.CreateObserver(
+            var observer = Bme688.CreateObserver(
             handler: result =>
             {
                 Resolver.Log.Info($"Observer: Temp changed by threshold; new temp: {result.New.Temperature?.Celsius:N2}C, old: {result.Old?.Temperature?.Celsius:N2}C");
@@ -39,7 +39,7 @@ namespace CycleStream.Iot.Sensors
             }
             );
 
-            _bme688?.Subscribe(consumer);
+            _bme688?.Subscribe(observer);
 
             if (_bme688 != null)
             {
@@ -52,12 +52,16 @@ namespace CycleStream.Iot.Sensors
                     {
                         Resolver.Log.Info($"  Gas Resistance: {result.New.GasResistance:N0} Ohms");
                     }
+
+                    if (_displayController != null)
+                    {
+                        _displayController.AtmosphericConditions = (result.New.Temperature, result.New.Humidity, result.New.Pressure, result.New.GasResistance);
+                        _displayController.Update();
+                    }
                 };
             }
 
             _bme688?.StartUpdating(TimeSpan.FromSeconds(2));
-
-            ReadConditions().Wait();
         }
 
         private void CreateI2CSensor()
@@ -76,19 +80,6 @@ namespace CycleStream.Iot.Sensors
                 _bme688.ConfigureHeatingProfile(Bme68x.HeaterProfileType.Profile1, new Temperature(300), TimeSpan.FromMilliseconds(100), new Temperature(22));
                 _bme688.HeaterProfile = Bme68x.HeaterProfileType.Profile1;
             }
-        }
-
-        private async Task ReadConditions()
-        {
-            if (_bme688 == null) { return; }
-
-            var (Temperature, Humidity, Pressure, Resistance) = await _bme688.Read();
-
-            Resolver.Log.Info("Initial Readings:");
-            Resolver.Log.Info($"  Temperature: {Temperature?.Celsius:N2}C");
-            Resolver.Log.Info($"  Pressure: {Pressure?.Hectopascal:N2}hPa");
-            Resolver.Log.Info($"  Relative Humidity: {Humidity?.Percent:N2}%");
-            Resolver.Log.Info($"  Gas Resistance: {Resistance?.Ohms:N0}Ohms");
         }
     }
 }
