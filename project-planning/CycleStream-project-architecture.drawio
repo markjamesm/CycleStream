@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-04T00:49:55.945Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0" etag="AwWFQGm7ewrLlcfszO8V" version="21.1.2" type="device">
+<mxfile host="app.diagrams.net" modified="2023-04-13T02:57:23.481Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0" etag="Z1kZjQb-PCfP3gpw4EUb" version="21.1.4" type="device">
   <diagram name="Page-1" id="XufWCjEgiwEEyngy597w">
-    <mxGraphModel dx="1147" dy="597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1562" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -11,7 +11,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Ly0BgLH-SZxM3R4FVg7h-2" value="&lt;div&gt;Frontend&lt;/div&gt;&lt;div&gt;(Blazor)&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="560" y="170" width="120" height="60" as="geometry" />
+          <mxGeometry x="560" y="130" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Ly0BgLH-SZxM3R4FVg7h-3" value="Cellphone&lt;br&gt;(WiFi to LTE bridge)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="160" y="260" width="120" height="60" as="geometry" />
@@ -19,13 +19,13 @@
         <mxCell id="Ly0BgLH-SZxM3R4FVg7h-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="Ly0BgLH-SZxM3R4FVg7h-6" target="Ly0BgLH-SZxM3R4FVg7h-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Ly0BgLH-SZxM3R4FVg7h-6" value="ASP.NET&lt;br&gt;Server" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="Ly0BgLH-SZxM3R4FVg7h-6" value="Server" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="260" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="Ly0BgLH-SZxM3R4FVg7h-7" value="PostgreSQL&lt;br&gt;DB" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="360" y="170" width="120" height="60" as="geometry" />
+          <mxGeometry x="360" y="130" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="m1gSs0zfxG6DzXkiWeG--6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.992;entryY=0.333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Ly0BgLH-SZxM3R4FVg7h-11" target="Ly0BgLH-SZxM3R4FVg7h-1">
+        <mxCell id="m1gSs0zfxG6DzXkiWeG--6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.992;entryY=0.333;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="Ly0BgLH-SZxM3R4FVg7h-11" target="Ly0BgLH-SZxM3R4FVg7h-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="300" y="430" />
@@ -73,20 +73,23 @@
         <mxCell id="7rsoL_gnRGdL4DbUClfV-1" value="Lux Meter&lt;br&gt;(BH1750)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="50" y="390" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="m1gSs0zfxG6DzXkiWeG--4" value="" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=1;" edge="1" parent="1" target="Ly0BgLH-SZxM3R4FVg7h-3">
+        <mxCell id="m1gSs0zfxG6DzXkiWeG--4" value="" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endFill=1;" parent="1" target="Ly0BgLH-SZxM3R4FVg7h-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="400" as="sourcePoint" />
             <mxPoint x="270" y="350" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m1gSs0zfxG6DzXkiWeG--5" value="" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;" edge="1" parent="1" target="Ly0BgLH-SZxM3R4FVg7h-6">
+        <mxCell id="m1gSs0zfxG6DzXkiWeG--5" value="" style="endArrow=classic;dashed=1;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endFill=1;" parent="1" target="Ly0BgLH-SZxM3R4FVg7h-6" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="280" y="290" as="sourcePoint" />
             <mxPoint x="330" y="240" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="m1gSs0zfxG6DzXkiWeG--8" value="Sensor Data&lt;br&gt;(MQTT messages)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="m1gSs0zfxG6DzXkiWeG--8" value="Sensor Data&lt;br&gt;(MQTT messages)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="217" y="340" width="93" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="SXe1fH7ga--iLCF551qw-1" value="EF Core" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="420" y="210" width="60" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
