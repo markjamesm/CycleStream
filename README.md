@@ -14,7 +14,7 @@ Note that the project is currently in a very early alpha stage and the featurese
 
 ## Project Architecture
 
-![CycleStream-project-architecture](https://user-images.githubusercontent.com/20845425/229658554-2979866b-2484-45d4-b7e7-88d8474bda46.png)
+![CycleStream-project-architecture](https://user-images.githubusercontent.com/20845425/231636952-f6cecb32-8e9f-4491-8680-1356b971ea60.png)
 
 CycleStream is built on the [Meadow Platform](https://www.wildernesslabs.co/), a complete, IoT platform with defense-grade security that runs full .NET Standard applications on embeddable microcontrollers. 
 
