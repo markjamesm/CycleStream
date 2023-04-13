@@ -3,6 +3,9 @@ using Meadow.Devices;
 using System.Threading.Tasks;
 using CycleStream.Iot.Sensors;
 using CycleStream.Iot.Mqtt;
+using Meadow.Hardware;
+using System;
+using System.Net.Http;
 
 namespace CycleStream.Iot
 {
@@ -47,9 +50,9 @@ namespace CycleStream.Iot
                 _displayController.Update();
             }
 
-            _environmentalSensor.Poll();
+            // _environmentalSensor.Poll();
 
-            await MqttClient.ConnectClient();
+           await MqttClient.PublishMessage("Temperature", "22.5");
         }
     }
 }

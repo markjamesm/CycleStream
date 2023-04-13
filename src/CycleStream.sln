@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CycleStream.Iot", "CycleStream.IoT\CycleStream.Iot.csproj", "{BBA9AA27-0522-4947-819F-70A6F3D2A95C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CycleStream.Server", "CycleStream.Server\CycleStream.Server.csproj", "{DBFFC1DA-A797-4990-8710-2BAC9C192C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CycleStream.Server", "CycleStream.Server\CycleStream.Server.csproj", "{C5A11DC3-5682-47B1-A81A-079740C91DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{BBA9AA27-0522-4947-819F-70A6F3D2A95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA9AA27-0522-4947-819F-70A6F3D2A95C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BBA9AA27-0522-4947-819F-70A6F3D2A95C}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{DBFFC1DA-A797-4990-8710-2BAC9C192C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DBFFC1DA-A797-4990-8710-2BAC9C192C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DBFFC1DA-A797-4990-8710-2BAC9C192C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DBFFC1DA-A797-4990-8710-2BAC9C192C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5A11DC3-5682-47B1-A81A-079740C91DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5A11DC3-5682-47B1-A81A-079740C91DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5A11DC3-5682-47B1-A81A-079740C91DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5A11DC3-5682-47B1-A81A-079740C91DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
