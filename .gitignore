@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+## Custom ignores
+
+# Ignore Meadow wifi credentials file
+/src/CycleStream.Iot/wifi.config.yaml

@@ -1,0 +1,5 @@
+﻿# Rename this file to wifi.config.yaml on your development machine and in production
+
+Credentials:
+    Ssid: YourSSID
+    Password: YourPassword
