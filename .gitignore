@@ -401,3 +401,6 @@ FodyWeavers.xsd
 
 # Ignore Meadow wifi credentials file
 /src/CycleStream.Iot/wifi.config.yaml
+
+# Ignore ActiveMQ login details
+/src/CycleStream.Iot/ActiveMqLogin.cs

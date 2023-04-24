@@ -7,34 +7,36 @@ using MQTTnet.Client.Options;
 
 namespace CycleStream.Iot.Mqtt
 {
-    public static class MqttClient
+    public class MqttClient
     {
-        public static async Task<bool> PublishMessage(string topic, string payload)
+        private readonly IMqttClient _mqttClient;
+
+        public MqttClient(MqttFactory mqttFactory)
         {
-            var mqttFactory = new MqttFactory();
+            _mqttClient = mqttFactory.CreateMqttClient();
+        }
 
-            using (var mqttClient = mqttFactory.CreateMqttClient())
-            {
-                var mqttClientOptions = new MqttClientOptionsBuilder()
-                    // Change the server IP in production
-                    .WithTcpServer("192.168.0.131", 5004)
-                    .Build();
+        public async Task Start()
+        {
+            var mqttClientOptions = new MqttClientOptionsBuilder()
+            // Change the server IP in production
+            .WithTcpServer("192.168.0.131", 61616)
+            .WithCredentials(ActiveMqLogin.ActiveMqUsername, ActiveMqLogin.ActiveMqPassword)
+            .Build();
 
-                await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+            await _mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+        }
 
-                var applicationMessage = new MqttApplicationMessageBuilder()
-                    .WithTopic(topic)
-                    .WithPayload(payload)
-                    .Build();
+        public async Task PublishMessage(string topic, string payload)
+        {
+            var applicationMessage = new MqttApplicationMessageBuilder()
+                .WithTopic(topic)
+                .WithPayload(payload)
+                .Build();
 
-                await mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
+            await _mqttClient.PublishAsync(applicationMessage, CancellationToken.None);
 
-                await mqttClient.DisconnectAsync();
-
-                Resolver.Log.Info("MQTT application message is published.");
-            }
-
-            return true;
+            Resolver.Log.Info("MQTT application message is published.");
         }
     }
 }
