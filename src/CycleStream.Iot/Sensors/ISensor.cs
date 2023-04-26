@@ -1,7 +1,9 @@
-﻿namespace CycleStream.Iot.Sensors
+﻿using System.Threading.Tasks;
+
+namespace CycleStream.Iot.Sensors
 {
     public interface ISensor
     {
-        public void Poll();
+        public Task Poll();
     }
 }

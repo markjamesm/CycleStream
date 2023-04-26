@@ -1,7 +1,9 @@
-﻿using Meadow;
+﻿using CycleStream.Iot.Mqtt;
+using Meadow;
 using Meadow.Foundation.Sensors.Atmospheric;
 using Meadow.Units;
 using System;
+using System.Threading.Tasks;
 
 namespace CycleStream.Iot.Sensors
 {
@@ -9,16 +11,20 @@ namespace CycleStream.Iot.Sensors
     {
         private Bme688 _bme688;
         private readonly DisplayController _displayController;
+        private readonly MqttClient _mqttClient;
 
-        public EnvironmentalSensor(DisplayController displayController)
+        public EnvironmentalSensor(DisplayController displayController, MqttClient mqttClient)
         {
             _displayController = displayController;
+            _mqttClient = mqttClient;
             CreateI2CSensor();
             // EnableGasHeater();
         }
 
-        public void Poll()
+        public async Task Poll()
         {
+            await _mqttClient.Start();
+
             var observer = Bme688.CreateObserver(
             handler: result =>
             {
@@ -43,7 +49,7 @@ namespace CycleStream.Iot.Sensors
 
             if (_bme688 != null)
             {
-                _bme688.Updated += (sender, result) =>
+                _bme688.Updated += async (sender, result) =>
                 {
                     Resolver.Log.Info($"  Temperature: {result.New.Temperature?.Celsius:N2}C");
                     Resolver.Log.Info($"  Relative Humidity: {result.New.Humidity:N2}%");
@@ -58,10 +64,12 @@ namespace CycleStream.Iot.Sensors
                         _displayController.AtmosphericConditions = (result.New.Temperature, result.New.Humidity, result.New.Pressure, result.New.GasResistance);
                         _displayController.Update();
                     }
+
+                    await _mqttClient.PublishMessage("Temperature", $"{result.New.Temperature?.Celsius:N2}");
                 };
             }
 
-            _bme688?.StartUpdating(TimeSpan.FromSeconds(2));
+            _bme688?.StartUpdating(TimeSpan.FromSeconds(10));
         }
 
         private void CreateI2CSensor()

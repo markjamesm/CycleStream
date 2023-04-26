@@ -21,7 +21,7 @@ namespace CycleStream.Iot.Mqtt
             var mqttClientOptions = new MqttClientOptionsBuilder()
             // Change the server IP in production
             .WithTcpServer("192.168.0.131", 61616)
-            .WithCredentials(ActiveMqLogin.ActiveMqUsername, ActiveMqLogin.ActiveMqPassword)
+            .WithCredentials(Secrets.ActiveMqUsername, Secrets.ActiveMqPassword)
             .Build();
 
             await _mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
