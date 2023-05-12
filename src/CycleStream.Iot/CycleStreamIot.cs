@@ -13,6 +13,7 @@ namespace CycleStream.Iot
         private DisplayController _displayController;
         private IProjectLabHardware _projLab;
         private EnvironmentalSensor _environmentalSensor;
+        private Accelerometer _accelerometer;
 
         public override Task Initialize()
         {
@@ -36,7 +37,8 @@ namespace CycleStream.Iot
             var mqttFactory = new MqttFactory();
             var mqttClient = new MqttClient(mqttFactory);
 
-            _environmentalSensor = new EnvironmentalSensor(_displayController, mqttClient);
+           _environmentalSensor = new EnvironmentalSensor(_displayController, mqttClient);
+           _accelerometer = new Accelerometer();
 
             Resolver.Log.Info("Initialization complete");
 
@@ -53,6 +55,7 @@ namespace CycleStream.Iot
             }
 
             await _environmentalSensor.Poll();
+            _accelerometer.Poll();
         }
     }
 }

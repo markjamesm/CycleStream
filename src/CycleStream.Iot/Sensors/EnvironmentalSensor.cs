@@ -52,11 +52,11 @@ namespace CycleStream.Iot.Sensors
                 _bme688.Updated += async (sender, result) =>
                 {
                     Resolver.Log.Info($"  Temperature: {result.New.Temperature?.Celsius:N2}C");
-                    Resolver.Log.Info($"  Relative Humidity: {result.New.Humidity:N2}%");
-                    Resolver.Log.Info($"  Pressure: {result.New.Pressure?.Millibar:N2}mbar ({result.New.Pressure?.Pascal:N2}Pa)");
+                    //Resolver.Log.Info($"  Relative Humidity: {result.New.Humidity:N2}%");
+                    //Resolver.Log.Info($"  Pressure: {result.New.Pressure?.Millibar:N2}mbar ({result.New.Pressure?.Pascal:N2}Pa)");
                     if (_bme688.GasConversionIsEnabled)
                     {
-                        Resolver.Log.Info($"  Gas Resistance: {result.New.GasResistance:N0} Ohms");
+                        // Resolver.Log.Info($"  Gas Resistance: {result.New.GasResistance:N0} Ohms");
                     }
 
                     if (_displayController != null)
